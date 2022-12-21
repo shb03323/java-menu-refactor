@@ -17,6 +17,14 @@ public class Coach {
         this.coachName = coachName;
     }
 
+    public void addDislikeMenus(List<Menu> dislikeMenus) {
+        this.dislikeMenus.addAll(dislikeMenus);
+    }
+
+    public String getCoachName() {
+        return coachName;
+    }
+
     public boolean isSameName(String coachName) {
         return this.coachName.equals(coachName);
     }

@@ -1,6 +1,7 @@
 package menu.domain.repository;
 
 import menu.domain.Coach;
+import menu.domain.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,10 @@ public class CoachRepository {
 
     public void clearCoaches() {
         coaches.clear();
+    }
+
+    public List<Coach> getCoaches() {
+        return coaches;
     }
 
     private void addCoach(Coach coach) {
