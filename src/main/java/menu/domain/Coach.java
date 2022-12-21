@@ -12,6 +12,7 @@ public class Coach {
 
     private final String coachName;
     private final List<Menu> dislikeMenus = new ArrayList<>();
+    private final List<Menu> dailyMenus = new ArrayList<>();
 
     public Coach(String coachName) {
         validateCoachNameLength(coachName);
@@ -23,12 +24,20 @@ public class Coach {
         this.dislikeMenus.addAll(dislikeMenus);
     }
 
+    public void addRecommendMenu(Menu menu) {
+        dailyMenus.add(menu);
+    }
+
     public String getCoachName() {
         return coachName;
     }
 
     public boolean isSameName(String coachName) {
         return this.coachName.equals(coachName);
+    }
+
+    public boolean isOverlappedMenu(Menu menu) {
+        return dailyMenus.contains(menu);
     }
 
     private void validateCoachNameLength(String coachName) {

@@ -10,7 +10,15 @@ public class Menu {
         this.category = category;
     }
 
-    public boolean isSameName(String menuName) {
+    public boolean nameOf(String menuName) {
         return this.menuName.equals(menuName);
+    }
+
+    public boolean categoryOf(Category category) {
+        return this.category.equals(category);
+    }
+
+    public String getMenuName() {
+        return menuName;
     }
 }

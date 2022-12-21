@@ -19,13 +19,20 @@ public class MenuRepository {
 
     public Menu findByName(String menuName) {
         return menus.stream()
-                .filter(menu -> menu.isSameName(menuName))
+                .filter(menu -> menu.nameOf(menuName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_PREFIX + "존재하지 않는 메뉴입니다."));
     }
     public List<Menu> changeMenuNamesToMenus(List<String> menuNames) {
         return menuNames.stream()
                 .map(this::findByName)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<String> findMenuNamesByCategory(Category category) {
+        return menus.stream()
+                .filter(menu -> menu.categoryOf(category))
+                .map(Menu::getMenuName)
                 .collect(Collectors.toUnmodifiableList());
     }
 }

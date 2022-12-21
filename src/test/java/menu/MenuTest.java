@@ -15,7 +15,7 @@ public class MenuTest {
         String wrongMenuName = "왕밤밤빵";
         String rightMenuName = "왕밤빵";
 
-        assertTrue(menu.isSameName(rightMenuName));
-        assertFalse(menu.isSameName(wrongMenuName));
+        assertTrue(menu.nameOf(rightMenuName));
+        assertFalse(menu.nameOf(wrongMenuName));
     }
 }

@@ -1,10 +1,14 @@
 package menu.controller;
 
+import menu.domain.CategoryGenerator;
 import menu.domain.Coach;
 import menu.domain.Menu;
+import menu.domain.RandomCategoryGenerator;
+import menu.domain.repository.CategoryRepository;
 import menu.domain.repository.CoachRepository;
 import menu.domain.repository.MenuRepository;
 import menu.domain.service.MenuMaker;
+import menu.domain.service.MenuRecommender;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -14,10 +18,12 @@ public class MenuController {
 
     private final MenuRepository menuRepository;
     private final CoachRepository coachRepository;
+    private final CategoryRepository categoryRepository;
 
     public MenuController() {
         this.menuRepository = new MenuRepository();
         this.coachRepository = new CoachRepository();
+        this.categoryRepository = new CategoryRepository();
         initMenus();
     }
 
@@ -25,6 +31,7 @@ public class MenuController {
         OutputView.printStartMessage();
         addCoaches();
         addDislikeMenus();
+        recommend();
     }
 
     private void initMenus() {
@@ -60,6 +67,9 @@ public class MenuController {
     }
 
     private void recommend() {
-
+        CategoryGenerator categoryGenerator = new RandomCategoryGenerator();
+        MenuRecommender menuRecommender = new MenuRecommender(
+                categoryGenerator, categoryRepository, menuRepository, coachRepository);
+        menuRecommender.recommend();
     }
 }
