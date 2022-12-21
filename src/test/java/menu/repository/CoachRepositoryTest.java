@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CoachRepositoryTest {
 
@@ -26,6 +27,19 @@ public class CoachRepositoryTest {
                 Arguments.of(List.of("후니")),
                 Arguments.of(List.of("후니", "포비", "쥬니", "레아", "지우", "루피"))
         );
+    }
+
+    @Test
+    void 코치_생성_테스트() {
+        coachRepository.addCoaches(List.of("후니", "포비"));
+        assertEquals(coachRepository.getCoaches().size(), 2);
+    }
+
+    @Test
+    void 코치_목록_초기화_테스트() {
+        coachRepository.addCoaches(List.of("후니", "포비"));
+        coachRepository.clearCoaches();
+        assertEquals(coachRepository.getCoaches().size(), 0);
     }
 
     @ParameterizedTest

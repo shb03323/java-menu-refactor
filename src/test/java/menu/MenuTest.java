@@ -14,7 +14,7 @@ public class MenuTest {
         Menu menu = new Menu("왕밤빵", Category.KOREAN);
         String wrongMenuName = "왕밤밤빵";
         String rightMenuName = "왕밤빵";
-        
+
         assertTrue(menu.isSameName(rightMenuName));
         assertFalse(menu.isSameName(wrongMenuName));
     }
