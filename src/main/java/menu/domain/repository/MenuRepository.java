@@ -12,8 +12,8 @@ public class MenuRepository {
 
     private final List<Menu> menus = new ArrayList<>();
 
-    public void addMenu(String menuName, Category category) {
-        menus.add(new Menu(menuName, category));
+    public void addMenu(Menu menu) {
+        menus.add(menu);
     }
 
     public Menu findByName(String menuName) {

@@ -9,4 +9,8 @@ public class Menu {
         this.menuName = menuName;
         this.category = category;
     }
+
+    public boolean isSameName(String menuName) {
+        return this.menuName.equals(menuName);
+    }
 }
