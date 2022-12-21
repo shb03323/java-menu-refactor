@@ -5,6 +5,7 @@ import menu.domain.Category;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static menu.constant.RecommendConstant.DAY_COUNT;
 import static menu.constant.RecommendConstant.MAX_CATEGORY_COUNT;
@@ -24,5 +25,11 @@ public class CategoryRepository {
 
     public boolean isNotLastDay() {
         return dailyCategories.size() != DAY_COUNT;
+    }
+
+    public List<String> getRecommendCategoriesName() {
+        return dailyCategories.stream()
+                .map(Category::getCategoryName)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

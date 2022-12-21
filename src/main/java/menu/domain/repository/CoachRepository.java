@@ -1,9 +1,12 @@
 package menu.domain.repository;
 
 import menu.domain.Coach;
+import menu.domain.Menu;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static menu.constant.CoachConstant.COACH_MAX_COUNT;
@@ -26,6 +29,12 @@ public class CoachRepository {
 
     public List<Coach> getCoaches() {
         return coaches;
+    }
+
+    public Map<String, List<String>> getRecommendMenusName() {
+        Map<String, List<String>> coachesRecommendMenus = new LinkedHashMap<>();
+        coaches.forEach(coach -> coachesRecommendMenus.put(coach.getCoachName(), coach.getRecommendMenusName()));
+        return coachesRecommendMenus;
     }
 
     private void addCoach(Coach coach) {

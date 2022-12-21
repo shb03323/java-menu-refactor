@@ -32,6 +32,12 @@ public class Coach {
         return coachName;
     }
 
+    public List<String> getRecommendMenusName() {
+        return dailyMenus.stream()
+                .map(Menu::getMenuName)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     public boolean isSameName(String coachName) {
         return this.coachName.equals(coachName);
     }

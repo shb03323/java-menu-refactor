@@ -13,6 +13,7 @@ import menu.view.InputView;
 import menu.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class MenuController {
 
@@ -32,6 +33,7 @@ public class MenuController {
         addCoaches();
         addDislikeMenus();
         recommend();
+        getResult();
     }
 
     private void initMenus() {
@@ -71,5 +73,11 @@ public class MenuController {
         MenuRecommender menuRecommender = new MenuRecommender(
                 categoryGenerator, categoryRepository, menuRepository, coachRepository);
         menuRecommender.recommend();
+    }
+
+    private void getResult() {
+        List<String> recommendCategoriesName = categoryRepository.getRecommendCategoriesName();
+        Map<String, List<String>> recommendMenusName = coachRepository.getRecommendMenusName();
+        OutputView.printResult(recommendCategoriesName, recommendMenusName);
     }
 }
