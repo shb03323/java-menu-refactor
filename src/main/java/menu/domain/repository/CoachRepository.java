@@ -16,6 +16,7 @@ public class CoachRepository {
 
     public void addCoaches(List<String> coachNames) {
         validateCoachesCount(coachNames);
+        validateOverlappedCoachName(coachNames);
         coachNames.forEach(coachName -> addCoach(new Coach(coachName)));
     }
 
@@ -33,6 +34,15 @@ public class CoachRepository {
         }
         if (coachNames.size() < COACH_MIN_COUNT) {
             throw new IllegalArgumentException(ERROR_PREFIX + "코치는 최소 2명 이상 입력해야 합니다.");
+        }
+    }
+
+    private void validateOverlappedCoachName(List<String> coachNames) {
+        List<String> distinctCoachNames = coachNames.stream()
+                .distinct()
+                .collect(Collectors.toUnmodifiableList());
+        if (distinctCoachNames.size() < coachNames.size()) {
+            throw new IllegalArgumentException(ERROR_PREFIX + "중복되는 코치를 입력하셨습니다.");
         }
     }
 }
