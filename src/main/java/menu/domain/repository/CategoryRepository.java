@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static menu.constant.RecommendConstant.DAY_COUNT;
+import static menu.constant.RecommendConstant.MAX_CATEGORY_COUNT;
 
 public class CategoryRepository {
 
@@ -18,7 +19,7 @@ public class CategoryRepository {
 
     public boolean isAvailableCategory(Category category) {
         int sameCategoryCount = Collections.frequency(dailyCategories, category);
-        return sameCategoryCount < 2;
+        return sameCategoryCount < MAX_CATEGORY_COUNT;
     }
 
     public boolean isNotLastDay() {
