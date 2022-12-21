@@ -6,6 +6,8 @@ import menu.domain.repository.MenuRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MenuRepositoryTest {
@@ -26,5 +28,15 @@ public class MenuRepositoryTest {
 
         assertThat(menuRepository.findByName("쌀국수")).isEqualTo(menu1);
         assertThat(menuRepository.findByName("하이라이스")).isEqualTo(menu2);
+    }
+
+    @Test
+    void 메뉴_이름에서_객체로_바뀌는지_확인() {
+        Menu menu = new Menu("쌀국수", Category.ASIAN);
+        menuRepository.addMenu(menu);
+        List<String> menuNames = List.of("쌀국수");
+
+        assertThat(menuRepository.changeMenuNamesToMenus(menuNames).get(0))
+                .isEqualTo(menu);
     }
 }
