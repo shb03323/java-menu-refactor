@@ -58,4 +58,8 @@ public class MenuController {
             addDislikeMenusOfOneCoach(coach);
         }
     }
+
+    private void recommend() {
+
+    }
 }
