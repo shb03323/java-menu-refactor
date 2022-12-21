@@ -33,9 +33,10 @@ public class MenuController {
     private void addCoaches() {
         try {
             List<String> coachesName = InputView.inputCoachesName();
-            coachesName.forEach(coachName -> coachRepository.addCoach(new Coach(coachName)));
+            coachRepository.addCoaches(coachesName);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
+            coachRepository.clearCoaches();
             addCoaches();
         }
     }
