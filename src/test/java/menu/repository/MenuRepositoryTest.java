@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MenuRepositoryTest {
 
@@ -38,5 +39,15 @@ public class MenuRepositoryTest {
 
         assertThat(menuRepository.changeMenuNamesToMenus(menuNames).get(0))
                 .isEqualTo(menu);
+    }
+
+    @Test
+    void 카테고리별_메뉴를_제대로_추출하는지_확인() {
+        Category category = Category.KOREAN;
+        menuRepository.findMenuNamesByCategory(category)
+                .forEach(menuName -> {
+                    Menu menu = menuRepository.findByName(menuName);
+                    assertTrue(menu.categoryOf(category));
+                });
     }
 }
