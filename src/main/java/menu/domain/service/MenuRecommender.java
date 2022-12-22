@@ -38,7 +38,7 @@ public class MenuRecommender {
         Category category;
         do {
             category = categoryGenerator.generate();
-        } while (categoryRepository.isAvailableCategory(category));
+        } while (!categoryRepository.isAvailableCategory(category));
         categoryRepository.addTodayCategory(category);
         return category;
     }
@@ -49,7 +49,7 @@ public class MenuRecommender {
         do {
             String menuName = Randoms.shuffle(menuNames).get(0);
             menu = menuRepository.findByName(menuName);
-        } while (!coach.isOverlappedMenu(menu));
+        } while (coach.isOverlappedMenu(menu));
         coach.addRecommendMenu(menu);
     }
 }
