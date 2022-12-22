@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CategoryRepositoryTest {
 
@@ -29,5 +28,16 @@ public class CategoryRepositoryTest {
     @Test
     void 추천이_끝났는지_확인하는_메소드가_잘_동작하는지_확인() {
         assertTrue(categoryRepository.isNotLastDay());
+    }
+
+    @Test
+    void 추천_카테고리_목록의_이름_목록이_제대로_생성되는지_확인() {
+        List<String> categoryNames = List.of(
+                Category.ASIAN.getCategoryName(),
+                Category.CHINESE.getCategoryName(),
+                Category.ASIAN.getCategoryName()
+        );
+
+        assertEquals(categoryNames, categoryRepository.getRecommendCategoriesName());
     }
 }
