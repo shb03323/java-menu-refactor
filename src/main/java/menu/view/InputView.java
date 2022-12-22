@@ -3,6 +3,7 @@ package menu.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,9 @@ public class InputView {
     public static List<String> inputDislikeMenusName(String coachName) {
         System.out.println(coachName + INPUT_DISLIKE_MENUS);
         String input = Console.readLine();
+        if (input.length() == 0) {
+            return Collections.emptyList();
+        }
         System.out.println();
         return parseToSplitOption(input);
     }
